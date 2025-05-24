@@ -18,18 +18,25 @@ let numberWindow = [];
 async function getnum(id) {
     try {
         const response = await axios.get(`${URL}${VALID_IDS[id]}`, {
-            timeout: 500,
+            timeout:3000,
             headers: {
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiZXhwIjoxNzQ4MDY0MTc5LCJpYXQiOjE3NDgwNjM4NzksImlzcyI6IkFmZm9yZG1lZCIsImp0aSI6IjA4N2U1Mzc2LWI3NzctNDAxZS1hN2NhLTY3ZmUwOGE1NWM1ZiIsInN1YiI6InNyaWhhcml2YXJzaGFuckBnbWFpbC5jb20ifSwiZW1haWwiOiJzcmloYXJpdmFyc2hhbnJAZ21haWwuY29tIiwibmFtZSI6InNyaSBoYXJpdmFyc2hhbiByIiwicm9sbE5vIjoiOTI3NjIyYmNzMTAyIiwiYWNjZXNzQ29kZSI6IndoZVFVeSIsImNsaWVudElEIjoiMDg3ZTUzNzYtYjc3Ny00MDFlLWE3Y2EtNjdmZTA4YTU1YzVmIiwiY2xpZW50U2VjcmV0IjoiQWhtdnRNUktockRRdmZjVCJ9.XFJNJq8UaIAuwlkDRCmnCx_s045XGysSOjazq9EvME4'
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiZXhwIjoxNzQ4MDY5MzExLCJpYXQiOjE3NDgwNjkwMTEsImlzcyI6IkFmZm9yZG1lZCIsImp0aSI6IjA4N2U1Mzc2LWI3NzctNDAxZS1hN2NhLTY3ZmUwOGE1NWM1ZiIsInN1YiI6InNyaWhhcml2YXJzaGFuckBnbWFpbC5jb20ifSwiZW1haWwiOiJzcmloYXJpdmFyc2hhbnJAZ21haWwuY29tIiwibmFtZSI6InNyaSBoYXJpdmFyc2hhbiByIiwicm9sbE5vIjoiOTI3NjIyYmNzMTAyIiwiYWNjZXNzQ29kZSI6IndoZVFVeSIsImNsaWVudElEIjoiMDg3ZTUzNzYtYjc3Ny00MDFlLWE3Y2EtNjdmZTA4YTU1YzVmIiwiY2xpZW50U2VjcmV0IjoiQWhtdnRNUktockRRdmZjVCJ9.26xf-OCK0CnDtsfcIFuUQpg3XZKfzEd7rqWSEM-kgvo'
             }
         });
+        console.log("Calling:", `${URL}${VALID_IDS[id]}`);
+        console.log("Token:", 'Bearer your_token_here');
+
         console.log("API Response:", response.data);
 
         return response.data.numbers || [];
     } catch (error) {
-        console.log("Error fetching:", error.message);
-        return [];
-    }
+  console.log("Error fetching:", error.message);
+  if (error.response) {
+    console.log("Response data:", error.response.data);
+    console.log("Status code:", error.response.status);
+  }
+  return [];
+}
 }
 
 
